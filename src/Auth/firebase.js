@@ -1,6 +1,8 @@
 // src/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, setPersistence, browserLocalPersistence, onAuthStateChanged } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"
+import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
   apiKey: "AIzaSyCA6uvxxa3ZUt3X4jajcuSG0-2h-J7XDxw",
@@ -16,8 +18,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const storage = getStorage(app)
+const db = getFirestore(app)
+const auth = getAuth(app);
 
 // Set persistence
 setPersistence(auth, browserLocalPersistence)
@@ -31,4 +35,4 @@ setPersistence(auth, browserLocalPersistence)
 // Auth state listener
 
 // Export the auth object, provider, signInWithPopup, and signOut
-export { auth, provider, signInWithPopup, signOut,onAuthStateChanged };
+export { auth, provider, signInWithPopup, signOut,onAuthStateChanged,db,storage };

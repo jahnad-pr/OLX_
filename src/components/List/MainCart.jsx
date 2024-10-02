@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function MainCart() {
   return (
-    <div className="lg:min-w-[calc(25%_-_16px)] lg:max-w-[calc(25%_-_16px)] sm:max-w-[calc(33.33%_-_16px)] sm:min-w-[calc(33.33%_-_16px)] ms:min-w-[calc(50%_-_16px)] ms:max-w-[calc(50%_-_16px)] max-w-[calc(100%_-_16px)] min-w-[calc(100%_-_16px)] h-[266px] rounded-md m-2 flex flex-col overflow-hidden border-gray-300 border-[1px] relative">
+    <div className="anime lg:min-w-[calc(25%_-_16px)] lg:max-w-[calc(25%_-_16px)] sm:max-w-[calc(33.33%_-_16px)] sm:min-w-[calc(33.33%_-_16px)] ms:min-w-[calc(50%_-_16px)] ms:max-w-[calc(50%_-_16px)] max-w-[calc(100%_-_16px)] min-w-[calc(100%_-_16px)] h-[266px] rounded-md m-2 flex flex-col overflow-hidden border-gray-300 border-[1px] relative">
     <span className='w-9 h-9 bg-white absolute right-3 top-3 rounded-full grid place-items-center'>
       <img className='w-6 h-6' src="https://www.svgrepo.com/show/13666/heart.svg" alt="" />
     </span>

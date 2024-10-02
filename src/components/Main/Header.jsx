@@ -112,7 +112,7 @@ export default function Header({ setLogPop }) {
       <CategorySM />
       <CategoryXL />
       {sell && <Suspense>
-        <Sell />
+        <Sell makeSell={makeSell} sell={makeSell} />
       </Suspense>
       }
     </>

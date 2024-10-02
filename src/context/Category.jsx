@@ -14,6 +14,8 @@ export default function Category({children}) {
   const [detShow, setDetShow] = useState(false)
   const [notShow, setNotShow] = useState(false)
   const [searchData, setSD] = useState('')
+  const [added, isAdded] = useState('')
+
 
   const closeAll = ()=> {
     locShow?setLocShow(false):null
@@ -56,7 +58,7 @@ export default function Category({children}) {
   return (
       <Categories.Provider value={{fetchCat,cat,nav,fetchNavCat,isSign,setSign,signOutUser,
         setLocShow,setLangShow,setDetShow,setNotShow,
-        locShow,langShow,detShow,notShow,closeAll,searchData,setSD
+        locShow,langShow,detShow,notShow,closeAll,searchData,setSD,added,isAdded
       }}>
         {children}
       </Categories.Provider>
