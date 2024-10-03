@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import { Categories } from '../../context/Category';
 
-export default function Loader({seccuss,showLoader,sell, loaderScreen,color}) {
+export default function Loader({seccuss,showLoader,sell, loaderScreen,color,rel}) {
 
   const { isAdded } = useContext(Categories)
 
@@ -20,8 +20,10 @@ export default function Loader({seccuss,showLoader,sell, loaderScreen,color}) {
   },[seccuss])
 
   return (
-    <>
-    <ReactLoading type={'bubbles'} color={color} height={'100px'} width={'150px'} />
+    <>{ rel?
+      <ReactLoading type={'bubbles'} color={color} height={'100%'} width={'100%'} />:
+      <ReactLoading type={'bubbles'} color={color} height={'100px'} width={'150px'} />
+    }
     { seccuss &&
     <div className="fixed w-screen h-screen bg-[#060a19] z-[130] top-0 left-0 anime grid place-items-center">
       <img src="https://i.gifer.com/7S7F.gif" alt="" />

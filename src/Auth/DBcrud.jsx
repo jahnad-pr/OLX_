@@ -5,9 +5,16 @@ import React from 'react'
 
 // Firebase CRUD operations
 // add prodect to sell
-export const addProdect = async (prodect,imageURL,showSeccuss) => {
+export const addProdect = async (prodect,imageURL,showSeccuss,isSign) => {
+    
     const usersCollectionRef = collection(db, "Prodects");
-    await addDoc(usersCollectionRef, {...prodect,imageURL,date:Date.now()})
+    await addDoc(usersCollectionRef, {...prodect,
+                                      imageURL,
+                                      date:new Date(),
+                                      userName:isSign.displayName,
+                                      profileURL:isSign.photoURL,
+                                      userId:isSign.uid,
+                                    })
     .then(res => showSeccuss(true) )
 }
 // READ: Fetch all data

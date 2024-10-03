@@ -1,9 +1,10 @@
-import React, { Suspense, useRef, useState } from 'react';
+import React, { Suspense, useContext, useRef, useState } from 'react';
 import { getCroppedImg } from '../Utils/CropImage';
 import Cropper from 'react-easy-crop';
 import CropPopup from './CropPopup';
 import adddPro from '../../assets/images/addProdect.jpeg'
 import { addProdect, uploadImage } from '../../Auth/DBcrud'
+import { Categories } from '../../context/Category';
 
 
 
@@ -20,38 +21,47 @@ export default function Sell({ sell, makeSell }) {
     const [aspect, setAspect] = useState(4 / 3)
     const sellPopupLayout = useRef()
     const croper = useRef();
-
+    
     // get LOading
     const Loader = React.lazy(() => import('../Utils/Loader'));
-
+    
     // Form data States
-    const [Prodect, setProdect] = useState({ caregory: 'car' })
+    const [Prodect, setProdect] = useState({ caregory: 'car',featured:false })
     const [seccuss, showSeccuss] = useState(false)
     const [loader, showLoader] = useState(false)
+    const { isSign } = useContext(Categories)
     const loaderScreen = useRef()
+    const decINput = useRef();
+    
 
-
-    const closeSellPopup = ()=>{
+    const closeSellPopup = () => {
         sellPopupLayout.current.classList.add('Inime')
         setTimeout(() => { makeSell(false) }, 400);
+    }
+    const descriptionInput = ()=>{
+        decINput.current.focus()
     }
 
     // Form Settlement
     // Update prodect onChange
     const onChangecontactalue = (e) => {
-        setProdect({ ...Prodect, [e.target.name]: e.target.value })
+        if(e.target.name!=='featured')
+            setProdect({ ...Prodect, [e.target.name]: e.target.value })
+        else {
+            setProdect({ ...Prodect, featured: !Prodect.featured })}
     }
     // Valiadtaion
     const formValidation = async (e) => {
         e.preventDefault()
         showLoader(true)
 
+
         // to Get url of Image
         if (croppedImage) {
             const url = await uploadImage(croppedImage)
-            addProdect(Prodect, url, showSeccuss)
+            // add Prodect to firebase
+            addProdect(Prodect, url, showSeccuss, isSign)
         }
-        // add Prodect to firebase
     }
 
 
@@ -99,48 +109,64 @@ export default function Sell({ sell, makeSell }) {
 
     return (
         <>
-            <div ref={sellPopupLayout} className={`w-screen h-screen bg-red-900 z-[110] fixed top-0 anime ${seccuss?'opacity-0':''}`}>
-                <img onClick={closeSellPopup} className='absolute w-[40px] h-[40px] right-10 top-10' src="https://www.svgrepo.com/show/32011/close-button.svg" alt="" />
-                <form method='DIALOG' action="">
-                    <h1 className='text-[28px] mb-2 max-w-[1280px] w-full mx-auto mt-20 font-bold'>Sell Yours</h1>
-                    <div className="w-full max-w-[1280px] mx-auto flex">
-                        <div className='flex-1'>
+            <div ref={sellPopupLayout} className={`overflow-scroll w-screen h-screen bg-white z-[110] fixed top-0 anime ${seccuss ? 'opacity-0' : ''}`}>
+                <img onClick={closeSellPopup} className='absolute w-[40px] h-[40px] right-10 top-10 hover:cursor-pointer' src="https://www.svgrepo.com/show/32011/close-button.svg" alt="" />
+                <form onSubmit={formValidation} className='mb-48 w-[calc(100vw_-_50px)] mx-auto' method='DIALOG' action="">
+                    <h1 className='text-[28px] mb-2 xl:max-w-[1280px] max-w-[600px] w-[calc(100%_-_45px)] mx-auto mt-20 font-bold'>Sell Yours</h1>
+                    <div className="w-full max-w-[1280px] mx-auto flex flex-col xl:flex-row">
+                        <div className='w-auto grid place-items-center xl:flex-1'>
 
                             {/* FOEM FIRST SECTION */}
                             {/* PRODECT NAME */}
-                            <p className='mb-1 mt-10'>Product Name</p>
-                            <input onChange={onChangecontactalue} name='prodectName' required placeholder='Iphone XR' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]' type="text" />
+                            <p className='mb-1 mt-10 max-w-[600px] w-full'>Product Name</p>
+                            <input onChange={onChangecontactalue} name='prodectName' required placeholder='Iphone XR' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' type="text" />
 
                             {/* DECSRIPTION */}
-                            <p className='mb-1 mt-10'>Description</p>
-                            <div className="bg-white mb-10 w-[100%] max-w-[600px] h-16 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]">
-                                <input onChange={onChangecontactalue} name='description' required placeholder='Clean and neet piece' className='w-full outline-none mt-3' type="text" />
+                            <p className='mb-1 mt-10 max-w-[600px] w-full'>Description</p>
+                            <div onClick={descriptionInput} className="bg-white mb-10 w-[100%] group max-w-[600px] h-16 rounded-md outline-none px-5 border-2 border-gray-300 focus-within:border-[#47e7df]">
+                                <input ref={decINput} onChange={onChangecontactalue} name='description' required placeholder='Clean and neet piece' className='w-full outline-none mt-3' type="text" />
                             </div>
 
                             {/* CATEGORY */}
-                            <br /><label htmlFor="subcategory">Subcategory: </label><br></br>
-                            <select onChange={onChangecontactalue} required className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]' id="subcategory" name="caregory">
-                                <option value="Car">Cars</option>
-                                <option value="Bus">Properties</option>
-                                <option value="Bus">Mobiles</option>
-                                <option value="Bus">Bikes</option>
-                                <option value="Bus">Jobs</option>
-                                <option value="Bus">Fashion</option>
-                                <option value="Bus">Pets</option>
-                                <option value="Bus">Servies</option>
-                            </select>
+                            <div className='w-[100%] max-w-[600px] flex'>
+                                <div className='flex-1 pr-3'>
+                                    <br /><label htmlFor="subcategory">Subcategory: </label><br></br>
+                                    <select onChange={onChangecontactalue} required className='mt-2 h-12 w-full rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' id="subcategory" name="category">
+                                        <option value="Car">Cars</option>
+                                        <option value="Bus">Properties</option>
+                                        <option value="Bus">Mobiles</option>
+                                        <option value="Bus">Bikes</option>
+                                        <option value="Bus">Jobs</option>
+                                        <option value="Bus">Fashion</option>
+                                        <option value="Bus">Pets</option>
+                                        <option value="Bus">Accessories</option>
+                                        <option value="Bus">Laptop/pc</option>
+                                        <option value="Bus">Servies</option>
+                                        <option value="Bus">Others</option>
+                                    </select>
+
+                                </div>
+
+                                <label className="inline-flex items-center cursor-pointer flex-0 mt-12">
+                                    <span className="ms-3 font-medium  mr-5 ml-5 text-yellow-600">Featured</span>
+                                    <input onChange={onChangecontactalue} type="checkbox" value={Prodect.featured} className="sr-only peer" name='featured' />
+                                    <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                </label>
+
+
+                            </div>
 
                             {/* PRICE */}
-                            <p className='mb-1 mt-10'>Price</p>
-                            <input onChange={onChangecontactalue} name='price' required placeholder='12,000' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]' type="text" />
+                            <p className='mb-1 mt-10 max-w-[600px] w-full'>Price</p>
+                            <input onChange={onChangecontactalue} name='price' required placeholder='12000' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' type="number" />
 
                             {/* LOCATION */}
-                            <p required className='mb-1 mt-10'>Location</p>
-                            <input onChange={onChangecontactalue} name='location' placeholder='Kochi' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]' type="text" />
+                            <p required className='mb-1 mt-10 max-w-[600px] w-full'>Location</p>
+                            <input onChange={onChangecontactalue} name='location' placeholder='Kochi' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' type="text" />
 
                             {/* CONTACT */}
-                            <p required className='mb-1 mt-10'>Contact Details</p>
-                            <input onChange={onChangecontactalue} name='contact' placeholder='9900XXXXXX' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]' type="number" />
+                            <p required className='mb-1 mt-10 max-w-[600px] w-full'>Contact Details</p>
+                            <input onChange={onChangecontactalue} name='contact' placeholder='9900XXXXXX' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' type="number" />
 
 
                         </div>
@@ -149,13 +175,13 @@ export default function Sell({ sell, makeSell }) {
 
                             {/*FORM SECOND PART */}
                             {/* Add prodect image */}
-                            {!imageSrc && <img className='w-full h-auto mb-10 flex-1 max-w-[300px] mx-auto anime' src={adddPro} alt="" />}
+                            {!imageSrc && <img className='w-full h-auto mb-10 flex-1 max-w-[300px] mx-auto anime ' src={adddPro} alt="" />}
 
                             {/* Container without image */}
-                            <div className='w-full flex flex-col justify-center items-center'>
+                            <div className='w-full flex flex-col justify-center items-center border-[1px] xl:border-0 border-gray-300 max-w-[600px] mx-auto py-10 rounded-md'>
 
                                 {/* Upload/Replace Button */}
-                                <div className='w-full  bg-blue-500 px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center z-[0]'>
+                                <div className='w-full  bg-blue-500 text-white px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center z-[0]'>
                                     <input className='absolute w-full h-full opacity-0 z-[2]' type="file" onChange={handleImageUpload} />
                                     <p className='w-full h-full font-bold z-[1]'>{!imageSrc ? 'Select the Image of you prodect' : 'Replace image'}</p>
                                 </div>
@@ -173,22 +199,22 @@ export default function Sell({ sell, makeSell }) {
                                     </div>
 
                                     {/* Crop image */}
-                                    <div onClick={() => { showCropPopup(true) }} className='anime w-full mt-10 bg-blue-500 px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center'>
+                                    <div onClick={() => { showCropPopup(true) }} className='anime w-full mt-10 text-blue-500 shadow-2xl border-[1px] border-gray-200 px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center'>
                                         <p className='w-full h-full font-bold'>Crop image</p>
                                     </div>
 
                                     {/* Submit */}
-                                    <input onClick={formValidation} type='submit' className="w-full mt-10 bg-blue-500 max-w-[400px] py-2 flex jc rounded-md font-bold" value={'Sell Prodect'} />
 
                                 </>)}
                             </div>
+                                { croppedImage && <input type='submit' className="bg-[#14b8a6] w-full mt-16 text-white max-w-[600px] py-2 flex jc rounded-md font-bold mx-auto" value={'Sell Product'} />} 
                         </div>
                     </div>
                 </form>
             </div >
             {loader &&
                 <Suspense>
-                    <div ref={loaderScreen} className={`w-screen h-screen fixed flex bg-black justify-center items-center  top-0 left-0  z-[120] ${!seccuss?'Jnime':''}`}>
+                    <div ref={loaderScreen} className={`w-screen h-screen fixed flex bg-black justify-center items-center  top-0 left-0  z-[120] ${!seccuss ? 'Jnime' : ''}`}>
                         <Loader color={'#ffffff'} loaderScreen={loaderScreen} sell={sell} showLoader={showLoader} seccuss={seccuss} />
                     </div>
                 </Suspense>}

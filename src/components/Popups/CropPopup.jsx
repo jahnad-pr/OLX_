@@ -19,11 +19,11 @@ export default function CropPopup(props) {
     return (
         <>
             <div ref={mainCropPopupLayout} className='w-screen h-screen backdrop-blur-3xl fixed top-0 left-0 grid place-items-center anime z-[156]'>
-                <div className='w-auto h-auto bg-red-600 rounded-lg flex items-center flex-col px-[10px] sm:px-[50px] md:px-[100px] duration-500 py-[50px]  z-[157]'>
+                <div className='w-auto h-auto bg-gray-300 shadow-2xl rounded-lg flex items-center flex-col px-[10px] sm:px-[50px] md:px-[100px] duration-500 py-[50px]  z-[157]'>
                     {
                         <div className='w-full min-w-[300px]'>
                             <label className='text-[16px]'>Select Aspect Ratio: </label>
-                            <select className='mt-1 w-[100%] max-w-[300px] h-12 rounded-md outline-none px-5 border-2 border-black focus:border-[#47e7df]' value={aspect} onChange={(e) => setAspect(parseFloat(e.target.value))}>
+                            <select className='mt-1 w-[100%] max-w-[300px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' value={aspect} onChange={(e) => setAspect(parseFloat(e.target.value))}>
                                 <option value={4 / 3}>4:3</option>
                                 <option value={16 / 9}>16:9</option>
                                 <option value={1 / 1}>1:1</option>
@@ -63,7 +63,7 @@ export default function CropPopup(props) {
                             </div>
                         </div>
                     )}
-                    <button onClick={onConformCrop} className="mt-5 w-full max-w-[300px] bg-green-500 text-white p-2 rounded">
+                    <button type='button' onClick={onConformCrop} className="mt-5 w-full max-w-[300px] bg-green-500 text-white p-2 rounded">
                         Confirm Crop
                     </button>
                 </div>

@@ -1,11 +1,14 @@
 import React,{ useState,useContext } from 'react'
 import { auth,provider,signInWithPopup,signOut,onAuthStateChanged } from '../../Auth/firebase.js'
+import { collection,addDoc } from "firebase/firestore"
+import { db } from '../../Auth/firebase.js';
+
 import { Categories } from '../../context/Category';
 
 
 export default function LoginPopup({setLogPop,logPop}) {
 
-  const { isSign,setSign } = useContext(Categories)
+  const { setSign } = useContext(Categories)
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -19,6 +22,14 @@ export default function LoginPopup({setLogPop,logPop}) {
           .then((result) => {
             setSign(result.user)
             setLogPop(false)
+
+            // Add user Into Users
+            const createUser = async () => {
+              
+              const usersCollectionRef = collection(db, "users");
+              await addDoc(usersCollectionRef, { name:result.user.displayName,userId:result.user.uid });
+            };
+            createUser()
             // You can store user info or navigate to a protected route
           })
           .catch((error) => {
@@ -26,21 +37,7 @@ export default function LoginPopup({setLogPop,logPop}) {
           });
       };
     
-      const signOutUser = () => {
-        if(confirm('Dou you want to logOut , Are you sure ?')){
-          auth.signOut()
-          .then(() => {
-            // Sign-out successful.
-            setSign(false)
-            
-            // Optionally, you can navigate to a different route or clear user info
-          })
-          .catch((error) => {
-            console.error('Error signing out: ', error);
-          });
-        }
-        
-      };
+     
 
     return (
         <>{ 
@@ -76,7 +73,7 @@ export default function LoginPopup({setLogPop,logPop}) {
                     <p>If you continue, you are accepting <span className='text-[#6491fa]'>OLX Terms and Conditions and Privacy Policy</span></p>
                 </div>
 
-                <svg onClick={()=>{ setLogPop(false) }} width="22px" height="22px" viewBox="0 0 1024 1024" data-aut-id="icon" className="absolute top-5 right-5" fillRule="evenodd"><path className="" d="M878.336 85.333l-366.336 366.315-366.336-366.315h-60.331v60.331l366.336 366.336-366.336 366.336v60.331h60.331l366.336-366.336 366.336 366.336h60.331v-60.331l-366.315-366.336 366.315-366.336v-60.331z"></path></svg>
+                <svg onClick={()=>{ setLogPop(false) }} width="22px" height="22px" viewBox="0 0 1024 1024" data-aut-id="icon" className="absolute top-5 right-5 hover:cursor-pointer" fillRule="evenodd"><path className="" d="M878.336 85.333l-366.336 366.315-366.336-366.315h-60.331v60.331l366.336 366.336-366.336 366.336v60.331h60.331l366.336-366.336 366.336 366.336h60.331v-60.331l-366.315-366.336 366.315-366.336v-60.331z"></path></svg>
             </div>
         </div>}
         </>
