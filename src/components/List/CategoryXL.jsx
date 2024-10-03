@@ -4,7 +4,11 @@ import { Categories } from '../../context/Category'
 
 export default function CategoryXL() {
 
+    const { setCtegorySelection } = useContext(Categories)
     const categorYData = useContext(Categories)
+    const showCategories = (cat) =>{
+        setCtegorySelection(cat)
+    }
 
     return (
         <div className="w-full h-auto mt-[2px] border-b-[2px] border-t-[2px] border-[#eff1f3] border-solid">
@@ -15,7 +19,7 @@ export default function CategoryXL() {
                 </div>
                 <ul className='flex items-center gap-3 font-light opacity-70'>
                     {categorYData.nav.map((data, index) => {
-                        return <li key={index} className='font-thin  whitespace-nowrap'>{data.name}</li>
+                        return <li key={index} onClick={()=>showCategories(data.label)} className='font-thin  whitespace-nowrap'>{data.label}</li>
                     })}
                 </ul>
             </div>

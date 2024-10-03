@@ -14,6 +14,7 @@ export default function Category({children}) {
   const [detShow, setDetShow] = useState(false)
   const [notShow, setNotShow] = useState(false)
   const [searchData, setSD] = useState('')
+  const [categorySelection, setCtegorySelection] = useState('')
   const [added, isAdded] = useState('')
 
 
@@ -58,7 +59,7 @@ export default function Category({children}) {
   return (
       <Categories.Provider value={{fetchCat,cat,nav,fetchNavCat,isSign,setSign,signOutUser,
         setLocShow,setLangShow,setDetShow,setNotShow,
-        locShow,langShow,detShow,notShow,closeAll,searchData,setSD,added,isAdded
+        locShow,langShow,detShow,notShow,closeAll,searchData,setSD,added,isAdded,setCtegorySelection,categorySelection
       }}>
         {children}
       </Categories.Provider>

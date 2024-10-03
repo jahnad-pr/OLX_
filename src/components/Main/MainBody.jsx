@@ -11,7 +11,7 @@ export default function MainBody({setLogPop}) {
   const [empty, isEmpty] = useState(false)
   const { searchData } = useContext(Categories)
   const [forSerch,setForSearch] = useState()
-  const { added,isAdded } = useContext(Categories)
+  const { added,isAdded,categorySelection } = useContext(Categories)
   const [ limit,changeLimit ] = useState(12)
 
   const loadMore = ()=>{
@@ -21,6 +21,11 @@ export default function MainBody({setLogPop}) {
   useEffect(()=>{
     searchData?SetProdectData(forSerch.filter( data => data.prodectName.toUpperCase().includes(searchData.toUpperCase()) )):SetProdectData(forSerch)
   },[searchData])
+
+  // useEffect(()=>{
+  //   categorySelection?SetProdectData(forSerch.filter( data => data.category.toUpperCase().includes(categorySelection.toUpperCase()) )):SetProdectData(forSerch)
+  // },[categorySelection])
+
 
   useEffect(() => {
     const fetchProdects = async () => {
@@ -42,7 +47,7 @@ export default function MainBody({setLogPop}) {
     <>
       {prodectData?.length>0 ?
       <>
-        <div className='w-screen h-auto xl:p-0 p-10 mb-80'>
+        <div className='w-screen h-auto xl:p-0 p-10 mb-20'>
           <h1 className='text-[24px] mb-2 mt-2 max-w-[1280px] w-full mx-auto pl-2'>Fresh recommendations</h1>
           <div className="max-w-[1280px] w-full mx-auto flex flex-wrap">
             {prodectData &&
@@ -52,7 +57,7 @@ export default function MainBody({setLogPop}) {
                 )}
           </div>
         </div> { limit<prodectData.length &&
-        <div className="w-full bg-red-300 h-20 mb-24 flex items-center">
+        <div className="w-full  h-20 mb-24 flex items-center">
           <div  onClick={loadMore}
           className="mx-auto p-3 border-2 border-black rounded-md px-4 font-bold hover:border-4 hover:bg-gray-600 hover:text-white">
             Load More

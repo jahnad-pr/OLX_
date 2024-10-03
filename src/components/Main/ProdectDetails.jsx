@@ -5,7 +5,8 @@ import { getDynamicTimeGap } from "../Utils/TimeGap";
 import { collection, query, where, getDocs, updateDoc, doc, } from "firebase/firestore"
 import { Categories } from "../../context/Category"
 import { db } from "../../Auth/firebase"
-import Loader from "../Utils/Loader";
+import Loader from "../Utils/Loader"
+import LazyImage from 'react-lazy-blur-image'
 
 
 export default function ProdectDetails({setLogPop}) {
@@ -22,7 +23,7 @@ export default function ProdectDetails({setLogPop}) {
 
 
   const closeSellPopup = ()=>{
-    navigate('/',{ replace:true })
+    navigate(-1,{ replace:true })
   }
 
 
@@ -90,7 +91,7 @@ export default function ProdectDetails({setLogPop}) {
   return (
     <>
       {
-        <div className={`w-screen h-auto pb-10 bg-[#f2f4f5] first-line:ProdectDetails relative first-letter`}>
+        <div className={`w-screen h-auto pb-40 bg-[#f2f4f5] first-line:ProdectDetails relative first-letter pt-10`}>
                 <img onClick={closeSellPopup} className='absolute w-[40px] h-[40px] right-20 top-8 hover:cursor-pointer opacity-55' src="https://www.svgrepo.com/show/32011/close-button.svg" alt="" />
           <div className="w-[calc(100%_-_45px)] max-w-[1280px] h-full mx-auto ">
             <div className="w-full h-full flex flex-col xl:flex-row p-5 gap-5">
@@ -138,7 +139,7 @@ export default function ProdectDetails({setLogPop}) {
                 {/* User details */}
                 <div className="w-full border-[1px] border-gray-300 flex flex-col rounded-md mt-2 bg-white">
                   <span className="flex p-5 items-center">
-                    <img className="w-[75px] h-[75px] rounded-full mr-5" src={data.profileURL} alt="" />
+                    <LazyImage placeholder={'https://i0.wp.com/mandapublishers.com/wp-content/uploads/2021/05/%E2%80%94Pngtree%E2%80%94user-icon-isolated-on-abstract_5192004.png?w=500&ssl=1'} uri={data.profileURL} render={(src, ) => <img  src={src} style={{ width: '75px', height: '75px', backgroundColor: 'black', borderRadius: '555px', display: '',marginRight: '20px' }} />} />
                     <p className="font-bold text-[18px]">{data.userName}</p>
                     <span className="flex-1"></span>
                     <img className="w-6 h-6 popup" src="https://www.svgrepo.com/show/95912/right-arrow.svg" alt="" />
