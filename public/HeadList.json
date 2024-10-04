@@ -1,43 +1,46 @@
 [
     {
-      "value": "BUS",
-      "label": "Properties"
+        "value": "Car",
+        "label": "Cars"
     },
     {
-      "value": "BUS",
-      "label": "Mobiles"
+        "value": "Propertie",
+        "label": "Properties"
     },
     {
-      "value": "BUS",
-      "label": "Bikes"
+        "value": "Mobile",
+        "label": "Mobiles"
     },
     {
-      "value": "BUS",
-      "label": "Jobs"
+        "value": "Bike",
+        "label": "Bikes"
     },
     {
-      "value": "BUS",
-      "label": "Fashion"
+        "value": "Job",
+        "label": "Jobs"
     },
     {
-      "value": "BUS",
-      "label": "Pets"
+        "value": "Fashion",
+        "label": "Fashions"
     },
     {
-      "value": "BUS",
-      "label": "Accessories"
+        "value": "Pet",
+        "label": "Pets"
     },
     {
-      "value": "BUS",
-      "label": "LAPTOP/PC"
+        "value": "Accessorie",
+        "label": "Accessories"
     },
     {
-      "value": "BUS",
-      "label": "SERVICES"
+        "value": "Laptop/pc",
+        "label": "Laptop/pc"
     },
     {
-      "value": "BUS",
-      "label": "OTHERS"
+        "value": "Service",
+        "label": "Services"
+    },
+    {
+        "value": "Other",
+        "label": "Others"
     }
-  ]
-  
+]

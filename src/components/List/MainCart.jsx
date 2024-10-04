@@ -86,7 +86,7 @@ export default function MainCart({ data,setLogPop }) {
       <LazyImage
         placeholder={'https://static.startuptalky.com/2022/06/OLX-Company-Profile-StartupTalky.jpg'}
         uri={data.imageURL}
-        render={(src, ) => <img className="object-cover w-full h-full" src={src} style={{ objectFit: 'cover', width: '100%', height: '100%', }} />}
+        render={(src, ) => <img className="object-cover w-full h-full" src={data.imageURL} style={{ objectFit: 'cover', width: '100%', height: '100%', }} />}
     />
         {/* <img
           
@@ -104,7 +104,7 @@ export default function MainCart({ data,setLogPop }) {
             {formatToINR(Number(data.price))}
           </p>
           <p className="text-[14px] text-gray-500">{data.prodectName}</p>
-          <p className="text-[14px] my-1 text-gray-500 pr-2 overflow-hidden">
+          <p className="text-[14px] my-1 text-gray-500 pr-2 overflow-hidden inline whitespace-nowrap ">
             {data.description}
           </p>
           <div className="text-[10px] text-gray-500 flex flex-1 items-end mt-1">

@@ -26,7 +26,7 @@ export default function Sell({ sell, makeSell }) {
     const Loader = React.lazy(() => import('../Utils/Loader'));
     
     // Form data States
-    const [Prodect, setProdect] = useState({ caregory: 'car',featured:false })
+    const [Prodect, setProdect] = useState({ category: 'Car',featured:false })
     const [seccuss, showSeccuss] = useState(false)
     const [loader, showLoader] = useState(false)
     const { isSign } = useContext(Categories)
@@ -133,16 +133,16 @@ export default function Sell({ sell, makeSell }) {
                                     <br /><label htmlFor="subcategory">Subcategory: </label><br></br>
                                     <select onChange={onChangecontactalue} required className='mt-2 h-12 w-full rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' id="subcategory" name="category">
                                         <option value="Car">Cars</option>
-                                        <option value="Bus">Properties</option>
-                                        <option value="Bus">Mobiles</option>
-                                        <option value="Bus">Bikes</option>
-                                        <option value="Bus">Jobs</option>
-                                        <option value="Bus">Fashion</option>
-                                        <option value="Bus">Pets</option>
-                                        <option value="Bus">Accessories</option>
-                                        <option value="Bus">Laptop/pc</option>
-                                        <option value="Bus">Servies</option>
-                                        <option value="Bus">Others</option>
+                                        <option value="Propertie">Properties</option>
+                                        <option value="Mobile">Mobiles</option>
+                                        <option value="Bike">Bikes</option>
+                                        <option value="Job">Jobs</option>
+                                        <option value="Fashion">Fashion</option>
+                                        <option value="Pet">Pets</option>
+                                        <option value="Accessorie">Accessories</option>
+                                        <option value="Laptop/pc">Laptop/pc</option>
+                                        <option value="Serviece">Servies</option>
+                                        <option value="Other">Others</option>
                                     </select>
 
                                 </div>
