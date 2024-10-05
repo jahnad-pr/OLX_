@@ -12,7 +12,8 @@ export default function MainCart({ data,setLogPop }) {
 
   const navigate = useNavigate();
   const navigateToPodectDetails = () => {
-    navigate(`/product/${data.id}`, { state: { data } });
+    navigate(`/product/${data.id}`, { state: { data } })
+    
   };
   const { isSign } = useContext(Categories)
   const [currentUserData,setcurrentUserData] = useState({})
