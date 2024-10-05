@@ -139,7 +139,8 @@ export default function ProdectDetails({setLogPop}) {
                 {/* User details */}
                 <div className="w-full border-[1px] border-gray-300 flex flex-col rounded-md mt-2 bg-white">
                   <span className="flex p-5 items-center">
-                    <LazyImage placeholder={'https://i0.wp.com/mandapublishers.com/wp-content/uploads/2021/05/%E2%80%94Pngtree%E2%80%94user-icon-isolated-on-abstract_5192004.png?w=500&ssl=1'} uri={data.profileURL} render={(src, ) => <img  src={src} style={{ width: '75px', height: '75px', backgroundColor: 'black', borderRadius: '555px', display: '',marginRight: '20px' }} />} />
+                    <img src={data.profileURL || 'https://i0.wp.com/mandapublishers.com/wp-content/uploads/2021/05/%E2%80%94Pngtree%E2%80%94user-icon-isolated-on-abstract_5192004.png?w=500&ssl=1'} alt="Profile" className="w-20 h-20 bg-black rounded-full mr-5"/>
+
                     <p className="font-bold text-[18px]">{data.userName}</p>
                     <span className="flex-1"></span>
                     <img className="w-6 h-6 popup" src="https://www.svgrepo.com/show/95912/right-arrow.svg" alt="" />

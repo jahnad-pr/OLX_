@@ -22,7 +22,8 @@ export default function UserDetails({setDetShow,setLogPop}) {
             </div>
         <div className="w-full mx-5 mb-4 mt-4 flex items-center gap-4">
 
-            <LazyImage placeholder={'https://i0.wp.com/mandapublishers.com/wp-content/uploads/2021/05/%E2%80%94Pngtree%E2%80%94user-icon-isolated-on-abstract_5192004.png?w=500&ssl=1'} uri={isSign.photoURL} render={(src, ) => <img  src={src} style={{ width: '56px', height: '56px', backgroundColor: 'black', borderRadius: '555px', display: '', }} />} />
+            <img src={isSign.photoURL || 'https://i0.wp.com/mandapublishers.com/wp-content/uploads/2021/05/%E2%80%94Pngtree%E2%80%94user-icon-isolated-on-abstract_5192004.png?w=500&ssl=1'} alt="User" className="w-14 h-14 bg-black rounded-full"/>
+
 
             <p className='text-[20px]'>{isSign.displayName}</p>
         </div>
