@@ -4,10 +4,12 @@ import { Categories } from '../../context/Category'
 
 export default function CategoryXL() {
 
+    // set the value of category
     const { setCtegorySelection } = useContext(Categories)
     const categorYData = useContext(Categories)
     const showCategories = (cat) =>{
         setCtegorySelection(cat)      
+        
     }
 
     return (
