@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Categories } from '../../context/Category'
 import progress from '../../assets/images/progress.png'
-clearImmediate
+
 
 export default function UserDetails({setDetShow,setLogPop}) {
 
