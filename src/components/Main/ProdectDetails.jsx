@@ -91,7 +91,7 @@ export default function ProdectDetails({setLogPop}) {
     <>
       {
         <div className={`w-screen h-auto pb-40 bg-[#f2f4f5] first-line:ProdectDetails relative first-letter pt-10`}>
-                <img onClick={closeSellPopup} className='absolute w-[40px] h-[40px] right-20 top-8 hover:cursor-pointer opacity-55' src="https://www.svgrepo.com/show/32011/close-button.svg" alt="" />
+       <img onClick={closeSellPopup} className='absolute md:w-10 md:h-10 h-6 w-6 right-4 top-4 hover:cursor-pointer opacity-55' src="https://www.svgrepo.com/show/32011/close-button.svg" alt="" />
           <div className="w-[calc(100%_-_45px)] max-w-[1280px] h-full mx-auto ">
             <div className="w-full h-full flex flex-col xl:flex-row p-5 gap-5">
 

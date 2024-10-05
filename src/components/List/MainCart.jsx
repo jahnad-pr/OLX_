@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { getDynamicTimeGap } from "../Utils/TimeGap";
-import { formatToINR } from "../Utils/PriceFormat";
-import { useNavigate } from "react-router";
-import { useContext } from "react";
+import React, { useEffect, useState } from "react"
+import { getDynamicTimeGap } from "../Utils/TimeGap"
+import { formatToINR } from "../Utils/PriceFormat"
+import { useNavigate } from "react-router"
+import { useContext } from "react"
 import { Categories } from "../../context/Category";
 import { collection, query, where, getDocs, updateDoc, doc, } from "firebase/firestore"
 import Loader from "../Utils/Loader";

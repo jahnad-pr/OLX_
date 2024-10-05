@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Categories } from '../../context/Category'
-import progress from '../../assets/images/progress.png'
+import progress from '../../assets/images/Pasted image.png'
 
 
 export default function UserDetails({setDetShow,setLogPop}) {

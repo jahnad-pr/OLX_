@@ -2,61 +2,67 @@
   {
     "category": "CARS",
     "url": "/cars_c84",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_5_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_5_2x.png",
+    "value": "Car"
   },
   {
     "category": "PROPERTIES",
     "url": "/properties_c3",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_3_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_3_2x.png",
+    "value": "Propertie"
   },
   {
     "category": "MOBILES",
     "url": "/mobiles_c1411",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_1411_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_1411_2x.png",
+    "value": "Mobile"
   },
   {
     "category": "JOBS",
     "url": "/jobs_c4",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_4_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_4_2x.png",
+    "value": "Job"
   },
   {
     "category": "BIKES",
     "url": "/bikes_c2198",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_2198_2x.png"
-  },
-  {
-    "category": "ELECTRONICS & APPLIANCES",
-    "url": "/electronics-appliances_c99",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_99_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_2198_2x.png",
+    "value": "Bike"
   },
   {
     "category": "COMMERCIAL VEHICLES & SPARES",
     "url": "/commercial-vehicles-spares_c2207",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_2207_2x.png"
-  },
-  {
-    "category": "FURNITURE",
-    "url": "/furniture_c628",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_628_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_2207_2x.png",
+    "value": "Bike"
   },
   {
     "category": "FASHION",
     "url": "/fashion_c87",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_87_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_87_2x.png",
+    "value":"Fashion"
   },
   {
     "category": "BOOKS, SPORTS & HOBBIES",
     "url": "/books-sports-hobbies_c767",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_767_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_767_2x.png",
+    "value":"Bike"
   },
   {
     "category": "PETS",
     "url": "/pets_c103",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_103_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_103_2x.png",
+    "value":"Pet"
   },
   {
     "category": "SERVICES",
     "url": "/services_c619",
-    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_619_2x.png"
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_619_2x.png",
+    "value": "Service"
+  },
+  {
+    "category": "OTHERS",
+    "url": "/electronics-appliances_c99",
+    "img_path": "https://statics.olx.in/olxin/category_icons/v4/category_99_2x.png",
+    "value": "Other"
   }
 ]

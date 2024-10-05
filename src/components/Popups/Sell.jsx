@@ -4,7 +4,8 @@ import Cropper from 'react-easy-crop';
 import CropPopup from './CropPopup';
 import adddPro from '../../assets/images/addProdect.jpeg'
 import { addProdect, uploadImage } from '../../Auth/DBcrud'
-import { Categories } from '../../context/Category';
+import { Categories } from '../../context/Category'
+import { formatToINR } from "../Utils/PriceFormat"
 
 
 
@@ -44,11 +45,16 @@ export default function Sell({ sell, makeSell }) {
 
     // Form Settlement
     // Update prodect onChange
-    const onChangecontactalue = (e) => {
+    const onChangecontactalue = (evenet) => {
         if(e.target.name!=='featured')
-            setProdect({ ...Prodect, [e.target.name]: e.target.value })
+            setProdect({ ...Prodect, [evenet.target.name]: evenet.target.value })
         else {
             setProdect({ ...Prodect, featured: !Prodect.featured })}
+    }
+    // price change by coamas
+    const onChangecontactaluePrice = (evenet)=>{
+        setProdect({ ...Prodect, [evenet.target.name]: formatToINR(Number(evenet.target.value.replace(/[^0-9.-]+/g, ''))) })
+        evenet.target.value = formatToINR(Number(evenet.target.value.replace(/[^0-9.-]+/g, '')))
     }
     // Valiadtaion
     const formValidation = async (e) => {
@@ -158,7 +164,7 @@ export default function Sell({ sell, makeSell }) {
 
                             {/* PRICE */}
                             <p className='mb-1 mt-10 max-w-[600px] w-full'>Price</p>
-                            <input onChange={onChangecontactalue} name='price' required placeholder='12000' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' type="number" />
+                            <input onChange={onChangecontactaluePrice} name='price' required placeholder='12000' className='w-[100%] max-w-[600px] h-12 rounded-md outline-none px-5 border-2 border-gray-300 focus:border-[#47e7df]' type="text" />
 
                             {/* LOCATION */}
                             <p required className='mb-1 mt-10 max-w-[600px] w-full'>Location</p>
@@ -178,7 +184,7 @@ export default function Sell({ sell, makeSell }) {
                             {!imageSrc && <img className='w-full h-auto mb-10 flex-1 max-w-[300px] mx-auto anime ' src={adddPro} alt="" />}
 
                             {/* Container without image */}
-                            <div className='w-full flex flex-col justify-center items-center border-[1px] xl:border-0 border-gray-300 max-w-[600px] mx-auto py-10 rounded-md'>
+                            <div className='w-full flex flex-col justify-center items-center sm:border-[1px] xl:border-0 border-gray-300 max-w-[600px] mx-auto py-10 rounded-md'>
 
                                 {/* Upload/Replace Button */}
                                 <div className='w-full  bg-blue-500 text-white px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center z-[0]'>
@@ -194,12 +200,12 @@ export default function Sell({ sell, makeSell }) {
 
                                     {/* Image output */}
                                     <div className="anime mt-5 w-full max-w-[400px] flex items-center justify-center flex-col rounded-lg overflow-hidden">
-                                        <h3 className='mb-2'>Cropped Image:</h3>
+                                        <h3 className='mb-2 opacity-30'>Cropped Image</h3>
                                         <img className='w-full h-auto' src={croppedImage} alt="Cropped" />
                                     </div>
 
                                     {/* Crop image */}
-                                    <div onClick={() => { showCropPopup(true) }} className='anime w-full mt-10 text-blue-500 shadow-2xl border-[1px] border-gray-200 px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center'>
+                                    <div onClick={() => { showCropPopup(true) }} className='anime w-full mt-10 text-blue-500 border-[2px] border-gray-200 px-5 py-3 max-w-[400px] relative text-center rounded-md grid place-items-center'>
                                         <p className='w-full h-full font-bold'>Crop image</p>
                                     </div>
 
@@ -207,7 +213,7 @@ export default function Sell({ sell, makeSell }) {
 
                                 </>)}
                             </div>
-                                { croppedImage && <input type='submit' className="bg-[#14b8a6] w-full mt-16 text-white max-w-[600px] py-2 flex jc rounded-md font-bold mx-auto" value={'Sell Product'} />} 
+                                { croppedImage && <input type='submit' className="bg-[#14b8a6] w-full md:mt-16 text-white max-w-[600px] py-2 flex jc rounded-md font-bold mx-auto" value={'Sell Product'} />} 
                         </div>
                     </div>
                 </form>
