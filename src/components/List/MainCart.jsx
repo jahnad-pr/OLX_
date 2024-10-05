@@ -7,7 +7,6 @@ import { Categories } from "../../context/Category";
 import { collection, query, where, getDocs, updateDoc, doc, } from "firebase/firestore"
 import Loader from "../Utils/Loader";
 import { db } from "../../Auth/firebase"
-import LazyImage from 'react-lazy-blur-image'
 
 export default function MainCart({ data,setLogPop }) {
 
@@ -83,16 +82,7 @@ export default function MainCart({ data,setLogPop }) {
         }
       </span>
       <div className="w-full h-40  p-2 overflow-hidden relative">
-      <LazyImage
-        placeholder={'https://static.startuptalky.com/2022/06/OLX-Company-Profile-StartupTalky.jpg'}
-        uri={data.imageURL}
-        render={(src, ) => <img className="object-cover w-full h-full" src={data.imageURL} style={{ objectFit: 'cover', width: '100%', height: '100%', }} />}
-    />
-        {/* <img
-          
-          src={data.imageURL}
-          alt=""
-        /> */}
+      <img src={data.imageURL || 'https://static.startuptalky.com/2022/06/OLX-Company-Profile-StartupTalky.jpg'} alt="OLX Image" className="object-cover w-full h-full" />
       </div>
       <div className="flex-1 flex w-full pt-2 relative">
         { data.featured && <span className='absolute text-[10px] bg-yellow-400 py-[1px] px-[6px] top-[-13px] left-[20px] overflow-hidden"'>
