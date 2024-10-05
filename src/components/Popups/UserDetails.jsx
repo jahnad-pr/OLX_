@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
 import { Categories } from '../../context/Category'
 import progress from '../../assets/images/progress.png'
-import LazyImage from 'react-lazy-blur-image'
-
+clearImmediate
 
 export default function UserDetails({setDetShow,setLogPop}) {
 
-  const { isSign,setSign,signOutUser } = useContext(Categories)
+  const { isSign,signOutUser } = useContext(Categories)
   const showPopuo = (event)=>{
     event.stopPropagation()
     setLogPop(true)

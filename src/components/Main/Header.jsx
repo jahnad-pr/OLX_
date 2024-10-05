@@ -7,7 +7,6 @@ import CategorySM from '../List/CategorySM'
 import UserDetails from '../Popups/UserDetails'
 import Notification from '../Popups/Notification'
 import { useNavigate } from 'react-router'
-import LazyImage from 'react-lazy-blur-image'
 
 
 

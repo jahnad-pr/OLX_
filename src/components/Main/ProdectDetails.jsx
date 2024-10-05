@@ -6,7 +6,6 @@ import { collection, query, where, getDocs, updateDoc, doc, } from "firebase/fir
 import { Categories } from "../../context/Category"
 import { db } from "../../Auth/firebase"
 import Loader from "../Utils/Loader"
-import LazyImage from 'react-lazy-blur-image'
 
 
 export default function ProdectDetails({setLogPop}) {
