@@ -3,7 +3,7 @@ import bannerImg from '../../assets/images/bottomBannerr.png'
 import SponserImg from '../../assets/images/Sponserss.png'
 import SponserXL from '../../assets/images/xlSpons.png'
 
-export default function Footer() {
+function Footer() {
   return (
     <>
     <div className='w-screen bg-[#f7f8f9]'>
@@ -67,3 +67,4 @@ export default function Footer() {
 
 
 
+export default React.memo(Footer);

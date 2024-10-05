@@ -5,7 +5,7 @@ import { Categories } from '../../context/Category'
 import Loader from '../Utils/Loader'
 
 
-export default function MainBody({setLogPop}) {
+function MainBody({setLogPop}) {
 
   const [prodectData, SetProdectData] = useState()
   const [empty, isEmpty] = useState(false)
@@ -76,3 +76,7 @@ export default function MainBody({setLogPop}) {
     </>
   )
 }
+
+export default React.memo(MainBody,(prev,next)=>{
+  prev.prodectData !== next.prodectData
+})
